@@ -27,11 +27,11 @@ jobs:
     - name: Run build
       run: npm run build
 
-    - name: Build Docker image
-      run: docker build -t hospital-appointment-scheduler .
+    # - name: Build Docker image
+    #   run: docker build -t hospital-appointment-scheduler .
 
-    - name: Push Docker image to Docker Hub
-      run: docker push hospital-appointment-scheduler
+    # - name: Push Docker image to Docker Hub
+    #   run: docker push hospital-appointment-scheduler
 
 
   # deploy:
