@@ -1,7 +1,7 @@
 {
   "name": "hospital-appointments-scheduler",
   "version": "1.0.0",
-  "description": "To make it easy for you to get started with GitLab, here's a list of recommended next steps.",
+  "description": "Hospital Appointments Scheduler",
   "main": "index.js",
   "type": "module",
   "husky": {
