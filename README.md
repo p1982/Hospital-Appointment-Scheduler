@@ -102,50 +102,75 @@ Refer to the src/dal/tables/index.ts for table definitions.
 Authentication
 Register a patient
 
+```sh
 POST /auth/register
 Request Body: { "email": "string", "password": "string", "fullName": "string" }
 Login
+```
 
+```sh
 POST /auth/login
 Request Body: { "email": "string", "password": "string" }
+```
 
 Doctors
 Get all doctors
 
+```sh
 GET /api/doctors
 Get doctor by ID
+```
 
+```sh
 GET /api/doctors/:id
 Authorization: Bearer Token
+```
 
 Get doctors by specialization
+
+```sh
 GET /api/doctors?specialization=specialization_name
 Authorization: Bearer Token
+```
 
 Patients
 Get patient by ID
+
+```sh
 GET /api/patients/:id
 Authorization: Bearer Token
+```
 
 Appointments
 Create an appointment
+
+```sh
 POST /api/appointments
 Authorization: Bearer Token
 Request Body: { "patientId": "number", "doctorId": "number", "appointmentDate": "YYYY-MM-DD", "time": "HH:MM:SS", "reason": "string" }
+```
 
 Update an appointment
+
+```sh
 PUT /api/appointments/:id
 Authorization: Bearer Token
 Request Body: { "patientId": "number", "doctorId": "number", "appointmentDate": "YYYY-MM-DD", "time": "HH:MM:SS", "reason": "string", "status": "string" }
+```
 
 Get appointments by patient I
+
+```sh
 GET /api/appointments?patientId=number
 Authorization: Bearer Token
+```
 
 Delete an appointment
+
+```sh
 DELETE /api/appointments/:id
 Authorization: Bearer Token
-
+```
 
 ## Appointment Scheduling Logic
 The system considers doctor availability, patient load, and appointment duration. When creating or updating an appointment, it:
@@ -160,5 +185,3 @@ To use the Hospital Appointment Scheduler:
 Register as a patient using the /auth/register endpoint.
 Log in to receive a JWT token.
 Use the token to access protected endpoints and manage appointments.
-Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
