@@ -41,3 +41,24 @@ jobs:
 
     - name: Push Docker image
       run: docker push hospital-appointment-scheduler
+
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v2
+
+  #   - name: Deploy to server
+  #     env:
+  #       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  #       SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+  #       SERVER_USER: ${{ secrets.SERVER_USER }}
+  #       SERVER_IP: ${{ secrets.SERVER_IP }}
+  #     run: |
+  #       mkdir -p ~/.ssh
+  #       echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+  #       chmod 600 ~/.ssh/id_rsa
+  #       echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+  #       ssh $SERVER_USER@$SERVER_IP 'docker pull hospital-appointment-scheduler && docker run -d -p 8000:8000 hospital-appointment-scheduler'

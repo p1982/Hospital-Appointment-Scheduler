@@ -82,7 +82,8 @@ This application manages a hospital appointment scheduling system with functiona
 PORT=8000
 HOST=localhost
 DATABASE_URL=postgresql://username:password@localhost:5432/yourdatabase
-SECRET_KEY=your_jwt_secret_key```
+SECRET_KEY=your_jwt_secret_key
+```
 
 
 ## Database Schema
