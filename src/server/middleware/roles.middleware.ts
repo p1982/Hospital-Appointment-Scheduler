@@ -8,7 +8,7 @@ interface RequestWithRoles extends express.Request {
 
 export const rolesValidation = (roles: [string, string?, string?]) => {
   return (
-    req: RequestWithRoles, 
+    req: RequestWithRoles,
     res: express.Response,
     next: express.NextFunction,
   ) => {

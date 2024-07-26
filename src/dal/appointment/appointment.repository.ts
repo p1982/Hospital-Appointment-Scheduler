@@ -20,7 +20,7 @@ class AppointmentRepository {
       RETURNING id, patient_id AS "patientId", doctor_id AS "doctorId", appointment_date AS "appointmentDate",
                 reason, time, status, created_at AS "createdAt", updated_at AS "updatedAt";
     `;
-  
+
     const values = [
       appointment.patientId,
       appointment.doctorId,
@@ -29,10 +29,10 @@ class AppointmentRepository {
       appointment.time,
       appointment.status,
     ];
-  
+
     try {
       await this.dbClient.query('BEGIN');
-  
+
       // Check availability in schedules_time table
       const checkAvailabilityQuery = `
         SELECT id FROM schedules_time 
@@ -44,35 +44,35 @@ class AppointmentRepository {
         appointment.appointmentDate,
         appointment.time,
       ];
-  
+
       const availabilityResult = await this.dbClient.query(
         checkAvailabilityQuery,
         checkAvailabilityValues,
       );
-  
+
       if (availabilityResult.rows.length === 0) {
         throw new Error('The time slot is not available');
       }
-  
+
       const result = await this.dbClient.query(queryText, values);
       if (result.rows.length > 0) {
         const appointmentData = result.rows[0];
         const patientId = appointmentData.patientId;
         const doctorId = appointmentData.doctorId;
-  
+
         const patientQuery = `SELECT id, first_name AS "firstName", last_name AS "lastName", email FROM patients WHERE id = $1`;
         const doctorQuery = `SELECT id, first_name AS "firstName", last_name AS "lastName", email, specialization FROM doctors WHERE id = $1`;
-  
+
         const patientResult = await this.dbClient.query(patientQuery, [
           patientId,
         ]);
         const doctorResult = await this.dbClient.query(doctorQuery, [doctorId]);
-  
+
         const patientData =
           patientResult.rows.length > 0 ? patientResult.rows[0] : null;
         const doctorData =
           doctorResult.rows.length > 0 ? doctorResult.rows[0] : null;
-  
+
         const scheduleTimeId = availabilityResult.rows[0].id;
         const updateScheduleTimeQuery = `
           UPDATE schedules_time
@@ -80,9 +80,9 @@ class AppointmentRepository {
           WHERE id = $1;
         `;
         await this.dbClient.query(updateScheduleTimeQuery, [scheduleTimeId]);
-  
+
         await this.dbClient.query('COMMIT');
-  
+
         return {
           ...appointmentData,
           patient: patientData,

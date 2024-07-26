@@ -22,7 +22,7 @@ class AppointmentsService {
     return this.appointmentRepository.createAppointment(appointment);
   };
 
-  getAppointment = async (patientId:string): Promise<Appointment[]> => {
+  getAppointment = async (patientId: string): Promise<Appointment[]> => {
     return this.appointmentRepository.getAppointment(patientId);
   };
 }

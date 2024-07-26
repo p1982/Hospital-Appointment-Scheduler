@@ -1,15 +1,40 @@
 import DatabaseClient from '../client.ts';
 import { dbConfig } from '../../config/index.ts';
-import { createPatientsTable, createPatientsUpdatedAtTrigger, dropPatientsTable } from './patients.ts';
-import { createDoctorsTable, createDoctorsUpdatedAtTrigger, dropDoctorsTable } from './doctors.ts';
-import { createAppointmentsTable, createAppointmentsUpdatedAtTrigger, dropAppointmentsTable } from './appointments.ts';
-import { createSchedulesTable, createSchedulesUpdatedAtTrigger, dropSchedulesTable } from './schedule.ts';
-import { createMedicalCardsTable, createMedicalCardsUpdatedAtTrigger, dropMedicalCardsTable } from './medicalCard.ts';
-import { createSchedulesTimeTable, createSchedulesTimeUpdatedAtTrigger, createUpdateUpdatedAtFunction, dropSchedulesTimeTable } from './schedules_time.ts';
+import {
+  createPatientsTable,
+  createPatientsUpdatedAtTrigger,
+  dropPatientsTable,
+} from './patients.ts';
+import {
+  createDoctorsTable,
+  createDoctorsUpdatedAtTrigger,
+  dropDoctorsTable,
+} from './doctors.ts';
+import {
+  createAppointmentsTable,
+  createAppointmentsUpdatedAtTrigger,
+  dropAppointmentsTable,
+} from './appointments.ts';
+import {
+  createSchedulesTable,
+  createSchedulesUpdatedAtTrigger,
+  dropSchedulesTable,
+} from './schedule.ts';
+import {
+  createMedicalCardsTable,
+  createMedicalCardsUpdatedAtTrigger,
+  dropMedicalCardsTable,
+} from './medicalCard.ts';
+import {
+  createSchedulesTimeTable,
+  createSchedulesTimeUpdatedAtTrigger,
+  createUpdateUpdatedAtFunction,
+  dropSchedulesTimeTable,
+} from './schedules_time.ts';
 
 const dbClient = new DatabaseClient(dbConfig);
 
-const createUpdatedAtTriggerFunction:string = `
+const createUpdatedAtTriggerFunction = `
   CREATE OR REPLACE FUNCTION update_updated_at_column()
   RETURNS TRIGGER AS $$
   BEGIN
@@ -44,10 +69,9 @@ export async function main() {
     await dbClient.query(createUpdateUpdatedAtFunction);
     await dbClient.query(createSchedulesTimeUpdatedAtTrigger);
     await dbClient.query(createMedicalCardsUpdatedAtTrigger);
-  
+
     console.log('Tables created successfully');
   } catch (err) {
     console.error('Database operation failed:', err);
   }
-  }
-  
+}

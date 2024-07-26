@@ -25,7 +25,6 @@ export class AppError extends Error {
     this.name = args.name || 'Error';
     this.httpCode = args.httpCode || HttpCode.INTERNAL_SERVER_ERROR;
     Error.captureStackTrace(this);
-    
   }
 }
 

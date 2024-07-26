@@ -3,8 +3,8 @@ import convict from 'convict';
 interface MyConfig {
   PORT: number;
   HOST: string;
-  DATABASE_URL:string;
-  SECRET_KEY:string;
+  DATABASE_URL: string;
+  SECRET_KEY: string;
 }
 const config = convict<MyConfig>({
   PORT: {
@@ -22,7 +22,8 @@ const config = convict<MyConfig>({
   DATABASE_URL: {
     doc: 'The database connection URL.',
     format: String,
-    default: 'postgres://ntqouthr:Kq1xuaXMsJoo2g8Sq8FWcsoUYvV_vqJg@abul.db.elephantsql.com/ntqouthr',
+    default:
+      'postgres://ntqouthr:Kq1xuaXMsJoo2g8Sq8FWcsoUYvV_vqJg@abul.db.elephantsql.com/ntqouthr',
     env: 'DATABASE_URL',
   },
   SECRET_KEY: {
@@ -30,7 +31,7 @@ const config = convict<MyConfig>({
     format: String,
     default: '1111122222aABCDEFGHJKLMNPQ',
     env: 'SECRET_KEY',
-  }
+  },
 });
 const DATABASE_URL = config.get('DATABASE_URL');
 export const dbConfig = {

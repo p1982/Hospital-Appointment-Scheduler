@@ -1,4 +1,4 @@
-export const createSchedulesTable:string = `
+export const createSchedulesTable = `
 CREATE TABLE IF NOT EXISTS schedules (
     id SERIAL PRIMARY KEY,
     doctor_id INT,
@@ -9,13 +9,13 @@ CREATE TABLE IF NOT EXISTS schedules (
 );
 `;
 
-export const createSchedulesUpdatedAtTrigger:string = `
+export const createSchedulesUpdatedAtTrigger = `
   CREATE TRIGGER update_schedules_updated_at
   BEFORE UPDATE ON schedules
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 `;
 
-export const dropSchedulesTable:string  = `
+export const dropSchedulesTable = `
   DROP TABLE IF EXISTS schudules CASCADE
 `;

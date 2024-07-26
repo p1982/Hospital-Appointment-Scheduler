@@ -10,7 +10,15 @@ const PORT = config.get('PORT');
 const HOST = config.get('HOST');
 
 const init = async (PORT: number, HOST: string) => {
-  const app = await new App([Container.get(AuthController), Container.get(DoctorController), Container.get(AppointmentController)], PORT, HOST);
+  const app = await new App(
+    [
+      Container.get(AuthController),
+      Container.get(DoctorController),
+      Container.get(AppointmentController),
+    ],
+    PORT,
+    HOST,
+  );
   app.listen();
 };
 

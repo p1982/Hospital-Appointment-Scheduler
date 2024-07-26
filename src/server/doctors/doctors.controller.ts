@@ -15,7 +15,12 @@ class DoctorController {
 
   public initializeRoutes() {
     this.router.get('/', this.getDoctor);
-    this.router.get('/:id', isAuthenticated, rolesValidation(["admin", "patient", "doctor"]), this.getDoctorById);
+    this.router.get(
+      '/:id',
+      isAuthenticated,
+      rolesValidation(['admin', 'patient', 'doctor']),
+      this.getDoctorById,
+    );
   }
 
   getDoctor = async (

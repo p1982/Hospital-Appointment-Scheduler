@@ -6,7 +6,13 @@ import { main } from '../../dal/tables/index.ts';
 
 const dbClient = new DatabaseClient(dbConfig);
 
-const fillSchedulesTimeTable = async (doctorId: number, scheduleId: number, date: string, startTime: string, endTime: string) => {
+const fillSchedulesTimeTable = async (
+  doctorId: number,
+  scheduleId: number,
+  date: string,
+  startTime: string,
+  endTime: string,
+) => {
   const start = new Date(`${date}T${startTime}`);
   const end = new Date(`${date}T${endTime}`);
 
@@ -44,7 +50,9 @@ const fillSchedulesTimeTable = async (doctorId: number, scheduleId: number, date
       ];
       await dbClient.query(queryText, values);
     }
-    console.log(`Time slots for doctor ID ${doctorId} on date ${date} created successfully`);
+    console.log(
+      `Time slots for doctor ID ${doctorId} on date ${date} created successfully`,
+    );
   } catch (err) {
     console.error(`Error creating time slots for doctor ID ${doctorId}:`, err);
     throw err;
@@ -111,7 +119,13 @@ const createWeeklySchedule = async (doctorId: number) => {
       ];
       const result = await dbClient.query(queryText, values);
       const scheduleId = result.rows[0].id;
-      await fillSchedulesTimeTable(schedule.doctor_id, scheduleId, schedule.available_date, schedule.start_appointment, schedule.end_appointment);
+      await fillSchedulesTimeTable(
+        schedule.doctor_id,
+        scheduleId,
+        schedule.available_date,
+        schedule.start_appointment,
+        schedule.end_appointment,
+      );
     }
     console.log(`Schedules for doctor ID ${doctorId} created successfully`);
   } catch (err) {
@@ -147,7 +161,7 @@ const fetchAndCreateDoctors = async () => {
     ];
 
     const doctorIds: number[] = [];
-    
+
     const insertPromises = doctorsData.map((user: any, index: number) => {
       const specialization = specializations[index % specializations.length];
       const passwordHash = bcrypt.hashSync(
@@ -218,8 +232,7 @@ const seedDatabase = async () => {
   }
 };
 
-(async function(){
+(async function () {
   await main();
   await seedDatabase();
-})()
-
+})();

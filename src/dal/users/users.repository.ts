@@ -1,13 +1,11 @@
-import { User } from "../../types/users.interface.ts";
-import { Service } from "typedi";
+import { User } from '../../types/users.interface.ts';
+import { Service } from 'typedi';
 import DatabaseClient from '../client.ts';
 import { dbConfig } from '../../config/index.ts';
-
 
 @Service()
 class UsersRepository {
   constructor(private dbClient = new DatabaseClient(dbConfig)) {}
-
 
   getByEmail = async (email: string): Promise<User | null> => {
     const queryText = `
@@ -45,7 +43,7 @@ class UsersRepository {
       user.email,
       user.address,
       user.password,
-      "patient"
+      'patient',
     ];
 
     try {

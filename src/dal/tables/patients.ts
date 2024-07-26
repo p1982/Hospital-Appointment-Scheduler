@@ -1,4 +1,4 @@
-export const createPatientsTable:string = `
+export const createPatientsTable = `
   CREATE TABLE IF NOT EXISTS patients (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
@@ -15,15 +15,13 @@ export const createPatientsTable:string = `
   )
 `;
 
-
-export const createPatientsUpdatedAtTrigger:string = `
+export const createPatientsUpdatedAtTrigger = `
   CREATE TRIGGER update_patients_updated_at
   BEFORE UPDATE ON patients
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 `;
 
-
-export const dropPatientsTable:string  = `
+export const dropPatientsTable = `
   DROP TABLE IF EXISTS patients CASCADE
 `;

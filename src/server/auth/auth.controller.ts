@@ -126,7 +126,6 @@ class AuthController {
       user.password &&
       (await bcrypt.compare(password, user.password))
     ) {
-
       const payload: JWTPayload = {
         sub: email,
         name: user.firstName + ' ' + user.lastName,

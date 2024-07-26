@@ -1,4 +1,4 @@
-export const createMedicalCardsTable:string = `
+export const createMedicalCardsTable = `
     CREATE TABLE IF NOT EXISTS medical_cards (
     id SERIAL PRIMARY KEY,
     patient_id INT,
@@ -12,14 +12,13 @@ export const createMedicalCardsTable:string = `
 );
 `;
 
-
-export const createMedicalCardsUpdatedAtTrigger:string = `
+export const createMedicalCardsUpdatedAtTrigger = `
   CREATE TRIGGER update_medical_cards_updated_at
   BEFORE UPDATE ON medical_cards
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 `;
 
-export const dropMedicalCardsTable:string  = `
+export const dropMedicalCardsTable = `
   DROP TABLE IF EXISTS medical_cards CASCADE
 `;

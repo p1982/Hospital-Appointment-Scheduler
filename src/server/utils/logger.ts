@@ -10,8 +10,8 @@ const fileErrorTransport = new winston.transports.File({
 const fileTransport = new winston.transports.File({ filename: 'combined.log' });
 
 //formatter
-const { combine, timestamp, label, printf } = winston.format;
-const myFormat = printf(({ level, message, label, timestamp }) => {
+const { combine, timestamp, printf } = winston.format;
+const myFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} ${level}: ${
     typeof message === 'object' ? JSON.stringify(message) : message
   }`;
