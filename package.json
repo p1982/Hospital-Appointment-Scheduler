@@ -24,6 +24,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "@sentry/integrations": "^7.49.0",
     "@sentry/node": "^7.72.0",
     "@types/ajv": "^1.0.0",
