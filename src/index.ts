@@ -5,6 +5,7 @@ import config from './config/index.ts';
 import AuthController from './server/auth/auth.controller.ts';
 import DoctorController from './server/doctors/doctors.controller.ts';
 import AppointmentController from './server/appointment/appointment.controller.ts';
+import TestController from './server/test/test.controller.ts';
 
 const PORT = config.get('PORT');
 const HOST = config.get('HOST');
@@ -15,6 +16,7 @@ const init = async (PORT: number, HOST: string) => {
       Container.get(AuthController),
       Container.get(DoctorController),
       Container.get(AppointmentController),
+      Container.get(TestController),
     ],
     PORT,
     HOST,

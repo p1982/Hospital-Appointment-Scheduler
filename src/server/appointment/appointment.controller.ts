@@ -10,14 +10,14 @@ class AppointmentController {
   public path = '/appointments';
   public router = express.Router();
 
-  constructor(private appointmenstService: AppointmentsService) {
+  constructor(private appointmentsService: AppointmentsService) {
     this.initializeRoutes();
   }
 
   public initializeRoutes() {
-    this.router.get('/:id', isAuthenticated, this.getAppointment);
+    this.router.get('/:id', isAuthenticated, this.getAppointments);
     this.router.post('/', isAuthenticated, this.createAppointment);
-    this.router.put('/', isAuthenticated, this.updateAppointment);
+    this.router.put('/:id', isAuthenticated, this.updateAppointment);
     this.router.delete(
       '/:id',
       isAuthenticated,
@@ -26,42 +26,64 @@ class AppointmentController {
     );
   }
 
-  getAppointment = async (
+  getAppointments = async (
     request: express.Request,
     response: express.Response,
   ): Promise<void> => {
-    const patientId: string = request.params.id;
-    const appointments = this.appointmenstService.getAppointment(patientId);
-    response.status(200).json(appointments);
+    try {
+      const patientId: string = request.params.id;
+      const appointments =
+        await this.appointmentsService.getAppointments(patientId);
+      response.status(200).json(appointments);
+    } catch (err) {
+      console.error('Error creating appointment:', err);
+      response.status(400).send((err as Error).message);
+    }
   };
 
   deleteAppointment = async (
     request: express.Request,
     response: express.Response,
   ) => {
-    const appointmentId: string = request.params.id;
-    const message = this.appointmenstService.deleteAppointment(appointmentId);
-    response.status(200).json({ message });
+    try {
+      const appointmentId: string = request.params.id;
+      const message =
+        await this.appointmentsService.deleteAppointment(appointmentId);
+      response.status(200).json({ message });
+    } catch (err) {
+      console.error('Error creating appointment:', err);
+      response.status(400).send((err as Error).message);
+    }
   };
 
   updateAppointment = async (
     request: express.Request,
     response: express.Response,
   ): Promise<void> => {
-    const appointment: Appointment = request.body;
-    const updatedAppointment =
-      await this.appointmenstService.updateAppointment(appointment);
-    response.status(200).json(updatedAppointment);
+    try {
+      const appointment: Appointment = request.body;
+      const updatedAppointment =
+        await this.appointmentsService.updateAppointment(appointment);
+      response.status(200).json(updatedAppointment);
+    } catch (err) {
+      console.error('Error creating appointment:', err);
+      response.status(400).send((err as Error).message);
+    }
   };
 
   createAppointment = async (
     request: express.Request,
     response: express.Response,
   ): Promise<void> => {
-    const appointment: Appointment = request.body;
-    const newAppointment =
-      await this.appointmenstService.createAppointment(appointment);
-    response.status(201).json(newAppointment);
+    try {
+      const appointment: Appointment = request.body;
+      const newAppointment =
+        await this.appointmentsService.createAppointment(appointment);
+      response.status(201).json(newAppointment);
+    } catch (err) {
+      console.error('Error creating appointment:', err);
+      response.status(400).send((err as Error).message);
+    }
   };
 }
 

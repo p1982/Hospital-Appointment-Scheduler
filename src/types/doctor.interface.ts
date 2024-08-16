@@ -1,3 +1,5 @@
+import { Schedule } from './schedule.interface.ts';
+
 export interface Doctor {
   id?: number;
   firstName: string;
@@ -6,6 +8,8 @@ export interface Doctor {
   contactNumber: string;
   email: string;
   password?: string;
+  role?: string;
+  schedules?: Schedule[];
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -1,6 +1,7 @@
 import AppointmentRepository from '../../dal/appointment/appointment.repository.ts';
 import { Service } from 'typedi';
 import { Appointment } from '../../types/appointment.interface';
+import { AppError } from '../../server/utils/customErrors.ts';
 
 @Service()
 class AppointmentsService {
@@ -12,18 +13,20 @@ class AppointmentsService {
 
   updateAppointment = async (
     appointment: Appointment,
-  ): Promise<Appointment> => {
+  ): Promise<Appointment | AppError> => {
     return this.appointmentRepository.updateAppointment(appointment);
   };
 
   createAppointment = async (
     appointment: Appointment,
-  ): Promise<Appointment> => {
+  ): Promise<Appointment | AppError> => {
     return this.appointmentRepository.createAppointment(appointment);
   };
 
-  getAppointment = async (patientId: string): Promise<Appointment[]> => {
-    return this.appointmentRepository.getAppointment(patientId);
+  getAppointments = async (
+    patientId: string,
+  ): Promise<Appointment[] | AppError> => {
+    return this.appointmentRepository.getAppointments(patientId);
   };
 }
 

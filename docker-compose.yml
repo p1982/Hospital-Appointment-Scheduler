@@ -1,13 +1,18 @@
-version: "3"
+version: '3.7'
 services:
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    hostname: rabbitmq
-    volumes:
-      - /var/lib/rabbitmq
+  node-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: node-server
     ports:
-      - "5672:5672"
-      - "15672:15672"
-    env_file:
-      - ./rabbitmq.env
+      - "3001:3001"
+    volumes:
+      - ./server:/usr/src
+      - /usr/src/node_modules
+    environment:
+      - PORT=${PORT}
+      - HOST=${HOST}
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+    command: npm start

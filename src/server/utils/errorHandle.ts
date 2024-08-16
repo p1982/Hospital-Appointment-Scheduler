@@ -7,7 +7,6 @@ const errorHandle = (err: Error, req: Request, res: Response) => {
   if (err instanceof AppError) {
     return res.status(err.httpCode).json({ message: err.message }).send();
   }
-  //sentryLog(err);
   res.status(500).send('Something is wrong');
 };
 

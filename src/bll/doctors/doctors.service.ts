@@ -2,6 +2,7 @@ import DoctorRepository from '../../dal/doctors/doctors.repository.ts';
 import { Service } from 'typedi';
 import { Doctor } from '../../types/doctor.interface.ts';
 import { Params } from '../../types/params.interface.ts';
+import { AppError } from '../../server/utils/customErrors.ts';
 
 @Service()
 class DoctorsService {
@@ -23,12 +24,12 @@ class DoctorsService {
   //     return this.doctorRepository.createDoctor(appointment);
   //   };
 
-  getDoctorById = async (id: string): Promise<Doctor> => {
+  getDoctorById = async (id: string): Promise<Doctor | AppError> => {
     return this.doctorRepository.getDoctorById(id);
   };
 
-  getDoctor = async (params: Params): Promise<Doctor[]> => {
-    return this.doctorRepository.getDoctor(params);
+  getDoctors = async (params: Params): Promise<Doctor[] | AppError> => {
+    return this.doctorRepository.getDoctors(params);
   };
 }
 

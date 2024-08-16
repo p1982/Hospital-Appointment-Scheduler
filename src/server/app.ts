@@ -19,6 +19,7 @@ class App {
   public app: express.Application;
   public port: number;
   public host: string;
+  private server: any;
   constructor(controllers: Array<any>, port: number, host: string) {
     this.app = express();
     this.port = port;
@@ -26,6 +27,7 @@ class App {
     this.initializeMiddlewares();
     this.setupRoutes(controllers);
     this.initializeErrorHandle();
+    this.server = null;
   }
 
   private initializeMiddlewares() {
@@ -58,9 +60,15 @@ class App {
   }
 
   public listen() {
-    this.app.listen(this.port, this.host, () => {
+    this.server = this.app.listen(this.port, this.host, () => {
       console.log(`App listening on http://${this.host}:${this.port}`);
     });
+  }
+  public async close() {
+    // Method to close the server
+    if (this.server) {
+      this.server.close();
+    }
   }
 }
 
