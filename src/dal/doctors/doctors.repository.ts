@@ -1,9 +1,9 @@
-import { Doctor } from '../../types/doctor.interface.ts';
 import { Service } from 'typedi';
-import DatabaseClient from '../client.ts';
-import { dbConfig } from '../../config/index.ts';
-import { Params } from '../../types/params.interface.ts';
-import { AppError, HttpCode } from '../../server/utils/customErrors.ts';
+import { Doctor } from '../../types/doctor.interface';
+import DatabaseClient from '../client';
+import { dbConfig } from '../../config/index';
+import { Params } from '../../types/params.interface';
+import { AppError, HttpCode } from '../../server/utils/customErrors';
 
 @Service()
 class DoctorRepository {

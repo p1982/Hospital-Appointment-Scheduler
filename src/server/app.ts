@@ -1,8 +1,8 @@
 import express from 'express';
 import formidable from 'express-formidable';
 import session from 'express-session';
-import errorHandle from './utils/errorHandle.ts';
-import { logRequest } from './utils/logger.ts';
+import errorHandle from './utils/errorHandle';
+import { logRequest } from './utils/logger';
 
 const fieldsToBody = (
   req: express.Request,

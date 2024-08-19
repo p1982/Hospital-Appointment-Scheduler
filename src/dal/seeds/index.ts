@@ -1,8 +1,8 @@
-import DatabaseClient from '../client.ts';
-import { dbConfig } from '../../config/index.ts';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
-import { main } from '../../dal/tables/index.ts';
+import DatabaseClient from '../client';
+import { dbConfig } from '../../config/index';
+import { main } from '../../dal/tables/index';
 
 const dbClient = new DatabaseClient(dbConfig);
 

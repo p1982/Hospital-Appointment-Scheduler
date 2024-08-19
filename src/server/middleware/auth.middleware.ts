@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as crypto from 'crypto';
-import config from '../../config/index.ts';
+import config from '../../config/index';
 
 interface RequestWithAuth extends express.Request {
   auth?: any;

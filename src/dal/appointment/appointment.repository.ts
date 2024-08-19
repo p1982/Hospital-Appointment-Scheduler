@@ -1,8 +1,8 @@
-import { Appointment } from '../../types/appointment.interface.ts';
 import { Service } from 'typedi';
-import DatabaseClient from '../client.ts';
-import { dbConfig } from '../../config/index.ts';
-import { AppError, HttpCode } from '../../server/utils/customErrors.ts';
+import { Appointment } from '../../types/appointment.interface';
+import DatabaseClient from '../client';
+import { dbConfig } from '../../config/index';
+import { AppError, HttpCode } from '../../server/utils/customErrors';
 
 @Service()
 class AppointmentRepository {
@@ -134,7 +134,6 @@ class AppointmentRepository {
     try {
       await this.dbClient.query('BEGIN');
 
-      // Lock the appointment record to prevent changes during the transaction
       const checkAppointmentQuery = `SELECT * FROM appointments WHERE id = $1 FOR UPDATE;`;
       const checkAppointmentResult = await this.dbClient.query(
         checkAppointmentQuery,
@@ -150,7 +149,6 @@ class AppointmentRepository {
 
       const originalAppointment = checkAppointmentResult.rows[0];
 
-      // Free the old slot
       const freeOldSlotQuery = `
         UPDATE schedules_time
         SET is_available = TRUE
@@ -162,7 +160,6 @@ class AppointmentRepository {
         originalAppointment.time,
       ]);
 
-      // Check if the new slot is available
       const checkAvailabilityQuery = `
         SELECT id FROM schedules_time 
         WHERE doctor_id = $1 AND date = $2 AND start_schedule <= $3 AND end_schedule > $3 AND is_available = TRUE
@@ -186,7 +183,6 @@ class AppointmentRepository {
         });
       }
 
-      // Update the appointment
       const result = await this.dbClient.query(queryText, values);
 
       if (result.rows.length > 0) {
@@ -207,7 +203,6 @@ class AppointmentRepository {
         const doctorData =
           doctorResult.rows.length > 0 ? doctorResult.rows[0] : null;
 
-        // Reserve the new slot
         const scheduleTimeId = availabilityResult.rows[0].id;
         const updateScheduleTimeQuery = `
           UPDATE schedules_time
@@ -232,7 +227,7 @@ class AppointmentRepository {
     } catch (err) {
       await this.dbClient.query('ROLLBACK');
       if (err instanceof AppError) {
-        throw err; // Re-throw known errors
+        throw err;
       } else {
         throw new AppError({
           message: 'Error updating appointment',
@@ -246,7 +241,7 @@ class AppointmentRepository {
     const queryText = `DELETE FROM appointments WHERE id = $1 RETURNING id, doctor_id, appointment_date AS date, time`;
 
     try {
-      await this.dbClient.query('BEGIN'); // Start transaction
+      await this.dbClient.query('BEGIN');
 
       const result = await this.dbClient.query(queryText, [id]);
 
@@ -259,7 +254,6 @@ class AppointmentRepository {
 
       const { doctor_id, date, time } = result.rows[0];
 
-      // Mark the corresponding slot as available in the schedules_time table
       const updateSlotQuery = `
         UPDATE schedules_time 
         SET is_available = TRUE 
@@ -268,14 +262,14 @@ class AppointmentRepository {
 
       await this.dbClient.query(updateSlotQuery, [doctor_id, date, time]);
 
-      await this.dbClient.query('COMMIT'); // Commit transaction
+      await this.dbClient.query('COMMIT');
 
       return `Appointment deleted successfully and doctor's slot is now available`;
     } catch (err) {
-      await this.dbClient.query('ROLLBACK'); // Rollback transaction in case of error
+      await this.dbClient.query('ROLLBACK');
       console.error('Error executing delete query:', err);
       if (err instanceof AppError) {
-        throw err; // Re-throw known errors
+        throw err;
       } else {
         throw new AppError({
           message: 'Error deleting appointment',
@@ -308,7 +302,7 @@ class AppointmentRepository {
     } catch (err) {
       console.error('Error retrieving appointments:', err);
       if (err instanceof AppError) {
-        throw err; // Re-throw known errors
+        throw err;
       } else {
         throw new AppError({
           message: 'Error retrieving appointments',

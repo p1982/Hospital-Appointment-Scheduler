@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-import App from './server/app.ts';
 import { Container } from 'typedi';
-import config from './config/index.ts';
-import AuthController from './server/auth/auth.controller.ts';
-import DoctorController from './server/doctors/doctors.controller.ts';
-import AppointmentController from './server/appointment/appointment.controller.ts';
-import TestController from './server/test/test.controller.ts';
+import App from './server/app';
+import config from './config/index';
+import AuthController from './server/auth/auth.controller';
+import DoctorController from './server/doctors/doctors.controller';
+import AppointmentController from './server/appointment/appointment.controller';
+import TestController from './server/test/test.controller';
 
 const PORT = config.get('PORT');
 const HOST = config.get('HOST');

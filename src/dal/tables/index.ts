@@ -1,36 +1,36 @@
-import DatabaseClient from '../client.ts';
-import { dbConfig } from '../../config/index.ts';
+import DatabaseClient from '../client';
+import { dbConfig } from '../../config/index';
 import {
   createPatientsTable,
   createPatientsUpdatedAtTrigger,
   dropPatientsTable,
-} from './patients.ts';
+} from './patients';
 import {
   createDoctorsTable,
   createDoctorsUpdatedAtTrigger,
   dropDoctorsTable,
-} from './doctors.ts';
+} from './doctors';
 import {
   createAppointmentsTable,
   createAppointmentsUpdatedAtTrigger,
   dropAppointmentsTable,
-} from './appointments.ts';
+} from './appointments';
 import {
   createSchedulesTable,
   createSchedulesUpdatedAtTrigger,
   dropSchedulesTable,
-} from './schedule.ts';
+} from './schedule';
 import {
   createMedicalCardsTable,
   createMedicalCardsUpdatedAtTrigger,
   dropMedicalCardsTable,
-} from './medicalCard.ts';
+} from './medicalCard';
 import {
   createSchedulesTimeTable,
   createSchedulesTimeUpdatedAtTrigger,
   createUpdateUpdatedAtFunction,
   dropSchedulesTimeTable,
-} from './schedules_time.ts';
+} from './schedules_time';
 
 const dbClient = new DatabaseClient(dbConfig);
 

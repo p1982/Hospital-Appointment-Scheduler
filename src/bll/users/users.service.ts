@@ -1,7 +1,7 @@
-import { AppError } from 'server/utils/customErrors.ts';
-import UsersRepository from '../../dal/users/users.repository.ts';
-import { User } from '../../types/users.interface.ts';
 import { Service } from 'typedi';
+import { AppError } from '../../server/utils/customErrors';
+import UsersRepository from '../../dal/users/users.repository';
+import { User } from '../../types/users.interface';
 
 @Service()
 class UsersService {
@@ -36,9 +36,8 @@ class UsersService {
       return newUser;
     }
 
-    // Check if newUser is an error or if it doesn't have a birthday
     if (!newUser || !newUser.birthday) {
-      return newUser; // Return as is if it's an error or the birthday is missing
+      return newUser;
     }
 
     const date = this.formatDate(newUser.birthday);

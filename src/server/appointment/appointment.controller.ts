@@ -1,9 +1,9 @@
-import AppointmentsService from '../../bll/appointment/appointment.service.ts';
 import { Service } from 'typedi';
 import express from 'express';
-import { rolesValidation } from '../../server/middleware/roles.middleware.ts';
-import { isAuthenticated } from '../../server/middleware/auth.middleware.ts';
-import { Appointment } from '../../types/appointment.interface.ts';
+import { rolesValidation } from '../../server/middleware/roles.middleware';
+import { isAuthenticated } from '../../server/middleware/auth.middleware';
+import { Appointment } from '../../types/appointment.interface';
+import AppointmentsService from '../../bll/appointment/appointment.service';
 
 @Service()
 class AppointmentController {

@@ -1,7 +1,7 @@
-import AppointmentRepository from '../../dal/appointment/appointment.repository.ts';
 import { Service } from 'typedi';
+import AppointmentRepository from '../../dal/appointment/appointment.repository';
 import { Appointment } from '../../types/appointment.interface';
-import { AppError } from '../../server/utils/customErrors.ts';
+import { AppError } from '../../server/utils/customErrors';
 
 @Service()
 class AppointmentsService {

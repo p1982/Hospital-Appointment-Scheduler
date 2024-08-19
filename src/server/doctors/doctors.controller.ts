@@ -1,9 +1,9 @@
-import DoctorsService from '../../bll/doctors/doctors.service.ts';
 import { Service } from 'typedi';
 import express from 'express';
-import { rolesValidation } from '../../server/middleware/roles.middleware.ts';
-import { isAuthenticated } from '../../server/middleware/auth.middleware.ts';
-import { AppError, HttpCode } from '../../server/utils/customErrors.ts';
+import { rolesValidation } from '../../server/middleware/roles.middleware';
+import { isAuthenticated } from '../../server/middleware/auth.middleware';
+import { AppError, HttpCode } from '../../server/utils/customErrors';
+import DoctorsService from '../../bll/doctors/doctors.service';
 
 @Service()
 class DoctorController {

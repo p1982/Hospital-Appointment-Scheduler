@@ -1,4 +1,4 @@
-import { Schedule } from './schedule.interface.ts';
+import { Schedule } from './schedule.interface';
 
 export interface Doctor {
   id?: number;

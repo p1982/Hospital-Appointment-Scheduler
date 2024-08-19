@@ -11,8 +11,9 @@
   },
   "scripts": {
     "dev": "nodemon",
-    "build": "rimraf ./build && tsc",
-    "start": "node build/index.js",
+    "start": "node build/src/index.js",
+    "build": "rimraf ./build && tsc && node --loader ts-node/esm add-js-extension.js",
+    "start:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "lint": "npx eslint ./src",
     "format": "npx eslint ./src --fix",
     "seed": "ts-node src/dal/seeds/index.ts",
@@ -69,6 +70,7 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typedi": "^0.10.0",
     "typescript": "^5.5.4",
     "winston": "^3.8.2"
@@ -83,7 +85,6 @@
     "server": "^1.0.39",
     "ts-convict": "^1.1.0",
     "ts-mockito": "^2.6.1",
-    "tsconfig-paths": "^4.2.0",
     "typedi": "^0.10.0"
   }
 }

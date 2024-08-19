@@ -1,12 +1,12 @@
-import UsersService from '../../bll/users/users.service.ts';
 import bcrypt from 'bcryptjs';
 import { Service } from 'typedi';
 import express from 'express';
 import * as crypto from 'crypto';
-import { JWTHeader, JWTPayload } from '../../types/jwt.interface.ts';
-import config from '../../config/index.ts';
-import { User } from '../../types/users.interface.ts';
-import { AppError, HttpCode } from '../utils/customErrors.ts';
+import { JWTHeader, JWTPayload } from '../../types/jwt.interface';
+import config from '../../config/index';
+import { User } from '../../types/users.interface';
+import { AppError, HttpCode } from '../utils/customErrors';
+import UsersService from '../../bll/users/users.service';
 
 @Service()
 class AuthController {
