@@ -801,3 +801,10 @@
 2024-08-16T13:26:00.216Z info: GET:/
 2024-08-16T13:26:00.294Z info: GET:/api/test
 2024-08-16T13:26:00.719Z info: GET:/
+2024-08-19T14:49:27.396Z info: POST:/api/auth/register
+2024-08-19T14:50:00.462Z info: POST:/api/auth/register
+2024-08-19T14:50:10.539Z info: POST:/api/auth/login
+2024-08-19T14:50:21.303Z info: GET:/api/doctors
+2024-08-19T15:09:25.585Z info: POST:/api/auth/login
+2024-08-19T15:09:32.945Z info: GET:/api/doctors
+2024-08-19T15:09:39.090Z info: GET:/api/doctors?specialization=Cardiology

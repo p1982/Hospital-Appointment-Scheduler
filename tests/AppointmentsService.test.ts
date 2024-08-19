@@ -1,9 +1,9 @@
-import AppointmentRepository from '../src/dal/appointment/appointment.repository.ts';
-import AppointmentsService from '../src/bll/appointment/appointment.service.ts'; // Adjust the import path as needed
+import AppointmentRepository from '../src/dal/appointment/appointment.repository';
+import AppointmentsService from '../src/bll/appointment/appointment.service'; // Adjust the import path as needed
 import { Appointment } from '../src/types/appointment.interface';
-import { AppError } from '../src/server/utils/customErrors.ts';
+import { AppError } from '../src/server/utils/customErrors';
 
-jest.mock('../src/server/utils/customErrors.ts', () => {
+jest.mock('../src/server/utils/customErrors', () => {
   return {
     AppError: jest.fn().mockImplementation(({ message, httpCode }) => ({
       message,

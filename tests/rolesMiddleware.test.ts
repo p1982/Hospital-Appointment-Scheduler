@@ -1,6 +1,6 @@
 // import express from 'express';
 // import request from 'supertest';
-// import { rolesValidation } from '../src/server/middleware/roles.middleware.ts';
+// import { rolesValidation } from '../src/server/middleware/roles.middleware';
 
 // describe('rolesValidation Middleware', () => {
 //   const app = express();
@@ -69,7 +69,7 @@
 
 import express from 'express';
 import request from 'supertest';
-import { rolesValidation } from '../src/server/middleware/roles.middleware.ts';
+import { rolesValidation } from '../src/server/middleware/roles.middleware';
 
 // This function creates a token that matches the expected format for your middleware
 const createToken = (role: string) => {

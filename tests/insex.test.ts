@@ -1,11 +1,11 @@
 import request from 'supertest';
 import 'reflect-metadata';
-import App from '../src/server/app.ts';
+import App from '../src/server/app';
 import { Container } from 'typedi';
-import AuthController from '../src/server/auth/auth.controller.ts';
-import DoctorController from '../src/server/doctors/doctors.controller.ts';
-import AppointmentController from '../src/server/appointment/appointment.controller.ts';
-import TestController from '../src/server/test/test.controller.ts';
+import AuthController from '../src/server/auth/auth.controller';
+import DoctorController from '../src/server/doctors/doctors.controller';
+import AppointmentController from '../src/server/appointment/appointment.controller';
+import TestController from '../src/server/test/test.controller';
 
 describe('App Integration Tests', () => {
   let appInstance: App;

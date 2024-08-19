@@ -1,8 +1,8 @@
-import UsersService from '../src/bll/users/users.service.ts';
-import UsersRepository from '../src/dal/users/users.repository.ts';
-import { User } from '../src/types/users.interface.ts';
+import UsersService from '../src/bll/users/users.service';
+import UsersRepository from '../src/dal/users/users.repository';
+import { User } from '../src/types/users.interface';
 
-jest.mock('../src/dal/users/users.repository.ts'); // Mock the UsersRepository
+jest.mock('../src/dal/users/users.repository'); // Mock the UsersRepository
 
 describe('UsersService', () => {
   let service: UsersService;

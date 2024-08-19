@@ -1,12 +1,12 @@
-import DoctorRepository from '../src/dal/doctors/doctors.repository.ts';
-import DoctorsService from '../src/bll/doctors/doctors.service.ts';
-import { Doctor } from '../src/types/doctor.interface.ts';
-import { Params } from '../src/types/params.interface.ts';
-import { AppError } from '../src/server/utils/customErrors.ts';
+import DoctorRepository from '../src/dal/doctors/doctors.repository';
+import DoctorsService from '../src/bll/doctors/doctors.service';
+import { Doctor } from '../src/types/doctor.interface';
+import { Params } from '../src/types/params.interface';
+import { AppError } from '../src/server/utils/customErrors';
 
-jest.mock('../src/dal/doctors/doctors.repository.ts');
+jest.mock('../src/dal/doctors/doctors.repository');
 
-jest.mock('../src/server/utils/customErrors.ts', () => {
+jest.mock('../src/server/utils/customErrors', () => {
   return {
     AppError: jest.fn().mockImplementation(({ message, httpCode }) => ({
       message,

@@ -1,9 +1,9 @@
-import UsersRepository from '../src/dal/users/users.repository.ts';
-import { User } from '../src/types/users.interface.ts';
-import { AppError, HttpCode } from '../src/server/utils/customErrors.ts';
-import DatabaseClient from '../src/dal/client.ts';
+import UsersRepository from '../src/dal/users/users.repository';
+import { User } from '../src/types/users.interface';
+import { AppError, HttpCode } from '../src/server/utils/customErrors';
+import DatabaseClient from '../src/dal/client';
 
-jest.mock('../src/dal/client.ts'); // Mock the DatabaseClient
+jest.mock('../src/dal/client'); // Mock the DatabaseClient
 
 // Mock console.error to suppress error output during tests
 const consoleErrorSpy = jest

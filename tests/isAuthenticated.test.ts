@@ -1,8 +1,8 @@
 import express from 'express';
 import crypto from 'crypto';
 import request from 'supertest';
-import { isAuthenticated } from '../src/server/middleware/auth.middleware.ts';
-import config from '../src/config/index.ts';
+import { isAuthenticated } from '../src/server/middleware/auth.middleware';
+import config from '../src/config/index';
 
 jest.mock('../src/config/index', () => ({
   get: jest.fn().mockImplementation((key: string) => {

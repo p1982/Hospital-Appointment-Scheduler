@@ -1,13 +1,13 @@
 import request from 'supertest';
 import express from 'express';
-import AuthController from '../src/server/auth/auth.controller.ts';
-import UsersService from '../src/bll/users/users.service.ts';
-import UsersRepository from '../src/dal/users/users.repository.ts';
+import AuthController from '../src/server/auth/auth.controller';
+import UsersService from '../src/bll/users/users.service';
+import UsersRepository from '../src/dal/users/users.repository';
 import { jest } from '@jest/globals';
 import bcrypt from 'bcryptjs';
-import { User } from '../src/types/users.interface.ts';
+import { User } from '../src/types/users.interface';
 
-jest.mock('../src/dal/users/users.repository.ts', () => {
+jest.mock('../src/dal/users/users.repository', () => {
   return jest.fn().mockImplementation(() => {
     return {
       getByEmail: jest.fn(),

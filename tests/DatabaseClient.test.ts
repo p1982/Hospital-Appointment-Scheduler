@@ -1,5 +1,5 @@
 import pkg from 'pg';
-import DatabaseClient from '../src/dal/client.ts'; // Adjust the import path as needed
+import DatabaseClient from '../src/dal/client'; // Adjust the import path as needed
 
 const { Client } = pkg;
 

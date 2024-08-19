@@ -1,13 +1,13 @@
 import request from 'supertest';
 import express from 'express';
-import DoctorController from '../src/server/doctors/doctors.controller.ts';
-import DoctorsService from '../src/bll/doctors/doctors.service.ts';
-import DoctorRepository from '../src/dal/doctors/doctors.repository.ts';
+import DoctorController from '../src/server/doctors/doctors.controller';
+import DoctorsService from '../src/bll/doctors/doctors.service';
+import DoctorRepository from '../src/dal/doctors/doctors.repository';
 import { jest } from '@jest/globals';
-import { Doctor } from '../src/types/doctor.interface.ts';
+import { Doctor } from '../src/types/doctor.interface';
 
 // Mocking the authentication and role validation middleware
-jest.mock('../src/server/middleware/auth.middleware.ts', () => ({
+jest.mock('../src/server/middleware/auth.middleware', () => ({
   isAuthenticated: (
     req: express.Request,
     res: express.Response,
@@ -15,14 +15,14 @@ jest.mock('../src/server/middleware/auth.middleware.ts', () => ({
   ) => next(),
 }));
 
-jest.mock('../src/server/middleware/roles.middleware.ts', () => ({
+jest.mock('../src/server/middleware/roles.middleware', () => ({
   rolesValidation:
     (roles: any) =>
     (req: express.Request, res: express.Response, next: express.NextFunction) =>
       next(),
 }));
 
-jest.mock('../src/dal/doctors/doctors.repository.ts', () => {
+jest.mock('../src/dal/doctors/doctors.repository', () => {
   return jest.fn().mockImplementation(() => {
     return {
       getDoctors: jest.fn(),

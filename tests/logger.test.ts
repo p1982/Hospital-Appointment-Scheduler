@@ -1,7 +1,7 @@
 import winston from 'winston';
 import request from 'supertest';
 import express from 'express';
-import logger, { logRequest } from '../src/server/utils/logger.ts';
+import logger, { logRequest } from '../src/server/utils/logger';
 
 // Partially mock winston logger
 jest.mock('winston', () => {

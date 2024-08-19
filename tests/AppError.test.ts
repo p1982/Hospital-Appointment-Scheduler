@@ -2,7 +2,7 @@ import {
   AppError,
   ValidationError,
   HttpCode,
-} from '../src/server/utils/customErrors.ts';
+} from '../src/server/utils/customErrors';
 
 describe('AppError', () => {
   it('should create an AppError with default values', () => {

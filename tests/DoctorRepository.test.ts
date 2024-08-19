@@ -1,10 +1,10 @@
-import DoctorRepository from '../src/dal/doctors/doctors.repository.ts';
-import { Doctor } from '../src/types/doctor.interface.ts';
-import { AppError, HttpCode } from '../src/server/utils/customErrors.ts';
-import DatabaseClient from '../src/dal/client.ts';
-import { Params } from '../src/types/params.interface.ts';
+import DoctorRepository from '../src/dal/doctors/doctors.repository';
+import { Doctor } from '../src/types/doctor.interface';
+import { AppError, HttpCode } from '../src/server/utils/customErrors';
+import DatabaseClient from '../src/dal/client';
+import { Params } from '../src/types/params.interface';
 
-jest.mock('../src/dal/client.ts'); // Mock the DatabaseClient
+jest.mock('../src/dal/client'); // Mock the DatabaseClient
 
 describe('DoctorRepository', () => {
   let repository: DoctorRepository;
